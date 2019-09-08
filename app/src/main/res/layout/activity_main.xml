@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#74C06A"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:stateListAnimator="@animator/anim_button_elevate"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity=""
+                android:orientation="vertical"
+
+                android:padding="21dp">
+
+                <TextView
+                    android:id="@+id/text_expression"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 + 1"
+                    android:textColor="#ffffff"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:id="@+id/text_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:text="2"
+                    android:textColor="#ffffff"
+                    android:textSize="32sp" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <android.support.v7.widget.CardView
+                android:tag="7"
+                android:id="@+id/button_7"
+                style="@style/NumberButton">
+
+                <TextView
+                    style="@style/NumberButtonText"
+
+                    android:text="7" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="8"
+                android:id="@+id/button_8"
+                style="@style/NumberButton">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="8" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="9"
+                android:id="@+id/button_9"
+                style="@style/NumberButton">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="9" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="+"
+                android:id="@+id/button_add"
+                style="@style/OperationButton">
+
+                <TextView
+                    style="@style/OperationButtonText"
+                    android:text="+" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_4"
+                style="@style/NumberButton"
+                android:tag="4">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="4" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_5"
+                style="@style/NumberButton"
+                android:tag="5">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="5" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="6"
+                android:id="@+id/button_6"
+                style="@style/NumberButton">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="6" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="-"
+                android:id="@+id/button_subtract"
+                style="@style/OperationButton">
+
+                <TextView
+                    style="@style/OperationButtonText"
+                    android:text="-" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_1"
+                style="@style/NumberButton"
+                android:tag="1">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="1"
+                    android:textColor="#9E9D9D"
+                    android:textSize="32sp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_2"
+                style="@style/NumberButton"
+                android:layout_weight="1"
+                android:tag="2">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="2" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_3"
+                style="@style/NumberButton"
+                android:layout_weight="1"
+                android:tag="3">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="3" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="*"
+                android:id="@+id/button_multiply"
+                style="@style/OperationButton"
+                android:layout_weight="1">
+
+                <TextView
+                    style="@style/OperationButtonText"
+                    android:text="x" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <android.support.v7.widget.CardView
+                android:tag="."
+                android:id="@+id/button_decimal"
+                style="@style/NumberButton">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="." />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_0"
+                style="@style/NumberButton"
+                android:tag="0">
+
+                <TextView
+                    style="@style/NumberButtonText"
+                    android:text="0" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/button_clear"
+                style="@style/OperationButton"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_backspace_white_24dp" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:tag="/"
+                android:id="@+id/button_divide"
+                style="@style/OperationButton">
+
+                <TextView
+                    style="@style/OperationButtonText"
+                    android:text="/" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/button_equals"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="8dp"
+            android:backgroundTint="#3E91FD"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:stateListAnimator="@animator/anim_button_elevate"
+            app:cardCornerRadius="32.5dp"
+            android:onClick="equals">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="="
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="48sp" />
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>
