@@ -1,8 +1,11 @@
 package com.dcgabriel.mysimplecalculator;
 
 import android.util.Log;
+
 import java.util.ArrayList;
 
+
+//Model
 public class Calculator {
     private static final String TAG = "Calculator";
     private ArrayList<Double> operandList;
@@ -18,21 +21,19 @@ public class Calculator {
     }
 
     public void pushOperator(String operator) {
-        operatorList.add(operator);
+            operatorList.add(operator);
     }
 
 
     public double equals() {
 
         double result = 0;
-        double operand1 =  operandList.get(0);
-
+        double operand1 = operandList.get(0);
+        Log.d(TAG, "0000000000000000000000000000000000000000000000000000equals:" + operandList.toString());
         for (int i = 0; i < operandList.size() - 1; i++) {
             String operator = operatorList.get(i);
             double operand2 = operandList.get(i + 1);
             Log.d(TAG, "0000000000000000000000000000000000000000000000000000equals: operand1=" + operandList.get(0) + " operand2=" + operand2 + " operator" + operator);
-            Log.d(TAG, "0000000000000000000000000000000000000000000000000000equals:" + operandList.toString());
-
             operand1 = evaluate(operand1, operand2, operator);
         }
 
@@ -60,10 +61,16 @@ public class Calculator {
         return initialResult;
     }
 
-    public void reset(){
+    public void reset() {
         operandList = new ArrayList<>();
         operatorList = new ArrayList<>();
 
     }
 
+    public void switchSign() {
+        double lastOperand = operandList.get(operandList.size()-1);
+        lastOperand = -lastOperand;
+        operandList.remove(operandList.size()-1);
+        pushOperand(lastOperand);
+    }
 }

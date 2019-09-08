@@ -5,9 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toolbar;
 
 import com.dcgabriel.mysimplecalculator.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+
+
+//View
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -20,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         calculatorPresenter = new CalculatorPresenter();
+
+        getSupportActionBar().hide();
 
     }
 
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         String result = calculatorPresenter.equals();
         binding.textResult.setText(result);
         calculatorPresenter.reset();
+
     }
 
     public void reset(View view) {
@@ -52,5 +60,22 @@ public class MainActivity extends AppCompatActivity {
         binding.textExpression.setText(expression);
     }
 
+    public void switchSign(View view) {
+        calculatorPresenter.switchSign();
+    }
 
+    @Override
+    protected void onResume() {
+       /* ArrayList<String> outputText = calculatorPresenter.onResume();
+        binding.textExpression.setText(outputText.get(0));
+        binding.textResult.setText(outputText.get(1));*/
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onPause() {
+        //calculatorPresenter.onPause();
+        super.onPause();
+    }
 }
