@@ -1,8 +1,6 @@
 package com.dcgabriel.mysimplecalculator;
 
 import android.util.Log;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class Calculator {
@@ -19,33 +17,10 @@ public class Calculator {
         operandList.add(operand);
     }
 
-    public void popOperand() {
-        operandList.remove(operandList.size() - 1);
-    }
-
     public void pushOperator(String operator) {
         operatorList.add(operator);
     }
 
-    public void popOperator() {
-        operatorList.remove(operandList.size() - 1);
-    }
-
-    public ArrayList getOperandList() {
-        return operandList;
-    }
-
-    public void setOperandList(ArrayList operandList) {
-        this.operandList = operandList;
-    }
-
-    public ArrayList getOperatorList() {
-        return operatorList;
-    }
-
-    public void setOperatorList(ArrayList operatorList) {
-        this.operatorList = operatorList;
-    }
 
     public double equals() {
 
