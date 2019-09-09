@@ -40,7 +40,7 @@
                         android:id="@+id/text_expression"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1 + 1"
+                        android:text="Ti-99 CE Paper Edition"
                         android:textColor="#9B9B9B"
                         android:textSize="32sp" />
 
@@ -49,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|bottom"
-                        android:text="2"
+
                         android:textColor="#9B9B9B"
                         android:textSize="32sp" />
 
@@ -254,7 +254,8 @@
 
                 </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView style="@style/NumberButton">
+                <android.support.v7.widget.CardView style="@style/NumberButton"
+                    android:onClick="switchSign">
 
                     <TextView
                         style="@style/NumberButtonText"

@@ -7,60 +7,61 @@ import java.util.ArrayList;
 //Presenter
 public class CalculatorPresenter {
     private static final String TAG = "CalculatorPresenter";
-    private StringBuilder expression;
-    private StringBuilder tempOperand;
+
     private Calculator calculatorModel;
-    private String result;
+
 
     public CalculatorPresenter() {
-        expression = new StringBuilder();
-        tempOperand = new StringBuilder();
         calculatorModel = new Calculator();
-        result = "";
     }
 
     public String onNumberPressed(String temp) {
-        tempOperand.append(temp);
-        expression.append(temp);
-
-        return expression.toString();
+        calculatorModel.appendTempOperand(temp);
+        calculatorModel.appendExpression(temp);
+        Log.d(TAG, "888888onNumberPressed: expression=" + calculatorModel.getExpression());
+        return calculatorModel.getExpression();
     }
 
     public String onOperatorClicked(String operator) {
-        if (tempOperand.length() != 0) {
-            expression.append(operator);
-            calculatorModel.pushOperand(Double.valueOf(tempOperand.toString()));
+        if (!calculatorModel.getTempOperand().isEmpty()) {
+            calculatorModel.appendExpression(operator);
+            calculatorModel.pushOperand(Double.valueOf(calculatorModel.getTempOperand()));
             calculatorModel.pushOperator(operator);
-            tempOperand = new StringBuilder();
+            calculatorModel.setTempOperand("");
         }
-        return expression.toString();
+        return calculatorModel.getExpression();
     }
 
     public String equals() {
-        if (tempOperand.length() != 0) {
-            calculatorModel.pushOperand(Double.valueOf(tempOperand.toString()));
+        String result = "";
+        if (!calculatorModel.getTempOperand().isEmpty()) {
+            calculatorModel.pushOperand(Double.valueOf(calculatorModel.getTempOperand()));
             result = Double.toString(calculatorModel.equals());
+
         }
         return result;
     }
 
     public String reset() {
         calculatorModel.reset();
-        expression = new StringBuilder();
-        tempOperand = new StringBuilder();
-        return expression.toString();
+        return calculatorModel.getExpression();
     }
 
     public String delete() {
-        if (tempOperand.length() != 0) {
-            tempOperand.deleteCharAt(tempOperand.length() - 1);
-            expression.deleteCharAt(expression.length() - 1);
+        if (!calculatorModel.getTempOperand().isEmpty()) {
+            calculatorModel.delete();
         }
-        return expression.toString();
+        return calculatorModel.getExpression();
     }
 
-    public void switchSign(){
-        calculatorModel.switchSign();
+    public String switchSign(){
+        if (!calculatorModel.getTempOperand().isEmpty()) {
+            //calculatorModel.pushOperand(Double.valueOf(tempOperand.toString()));
+            calculatorModel.switchSign();
+
+        }
+
+        return calculatorModel.getTempOperand();
     }
 
     /*

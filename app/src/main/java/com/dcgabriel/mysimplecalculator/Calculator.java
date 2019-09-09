@@ -10,10 +10,46 @@ public class Calculator {
     private static final String TAG = "Calculator";
     private ArrayList<Double> operandList;
     private ArrayList<String> operatorList;
+    private String expression;
+    private String tempOperand;
+    private String result;
 
     public Calculator() {
         operandList = new ArrayList<>();
         operatorList = new ArrayList<>();
+        expression = "";
+        tempOperand = "";
+        result = "";
+    }
+
+    public String getTempOperand() {
+        return tempOperand;
+    }
+
+    public String getExpression() {
+        return expression;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setTempOperand(String tempOperand) {
+        this.tempOperand = tempOperand;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+
+    public void appendTempOperand(String tempOperand) {
+        this.tempOperand += tempOperand;
+        Log.d(TAG, "88888888888888888888888888888appendTempOperand: tempOperand=" + tempOperand);
+    }
+
+    public void appendExpression(String temp) {
+        this.expression += temp;
     }
 
     public void pushOperand(double operand) {
@@ -21,7 +57,7 @@ public class Calculator {
     }
 
     public void pushOperator(String operator) {
-            operatorList.add(operator);
+        operatorList.add(operator);
     }
 
 
@@ -29,15 +65,16 @@ public class Calculator {
 
         double result = 0;
         double operand1 = operandList.get(0);
-        Log.d(TAG, "0000000000000000000000000000000000000000000000000000equals:" + operandList.toString());
+        Log.d(TAG, "000000000000000000000000000000equals:" + operandList.toString());
         for (int i = 0; i < operandList.size() - 1; i++) {
             String operator = operatorList.get(i);
             double operand2 = operandList.get(i + 1);
-            Log.d(TAG, "0000000000000000000000000000000000000000000000000000equals: operand1=" + operandList.get(0) + " operand2=" + operand2 + " operator" + operator);
+            Log.d(TAG, "00000000000000000000000000000equals: operand1=" + operandList.get(0) + " operand2=" + operand2 + " operator" + operator);
             operand1 = evaluate(operand1, operand2, operator);
         }
 
         result = operand1;
+        setResult(Double.toString(result));
         return result;
     }
 
@@ -61,16 +98,27 @@ public class Calculator {
         return initialResult;
     }
 
+    public void delete() {
+
+        StringBuilder string = new StringBuilder(tempOperand);
+        string.deleteCharAt(tempOperand.length() - 1);
+        tempOperand = string.toString();
+
+        string = new StringBuilder(expression);
+        string.deleteCharAt(expression.length() - 1);
+        expression = string.toString();
+
+        Log.d(TAG, "delete: tempOperand=" + tempOperand + " expression=" + expression);
+    }
+
     public void reset() {
         operandList = new ArrayList<>();
         operatorList = new ArrayList<>();
-
+        tempOperand = "";
+        expression = "";
     }
 
     public void switchSign() {
-        double lastOperand = operandList.get(operandList.size()-1);
-        lastOperand = -lastOperand;
-        operandList.remove(operandList.size()-1);
-        pushOperand(lastOperand);
+        tempOperand = "-" + tempOperand;
     }
 }

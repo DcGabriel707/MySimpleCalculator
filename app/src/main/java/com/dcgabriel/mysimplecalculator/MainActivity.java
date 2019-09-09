@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void switchSign(View view) {
-        calculatorPresenter.switchSign();
+        String switchedOperand = calculatorPresenter.switchSign();
+        binding.textExpression.setText(switchedOperand);
     }
 
     @Override
