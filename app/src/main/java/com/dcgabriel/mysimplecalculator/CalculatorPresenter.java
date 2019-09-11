@@ -1,7 +1,10 @@
 package com.dcgabriel.mysimplecalculator;
 
 import android.util.Log;
+import android.view.View;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 //Presenter
@@ -9,16 +12,26 @@ public class CalculatorPresenter {
     private static final String TAG = "CalculatorPresenter";
 
     private Calculator calculatorModel;
+    ViewInterface calculatorView;
 
 
     public CalculatorPresenter() {
         calculatorModel = new Calculator();
     }
 
+    public void attachView(ViewInterface view) {
+        calculatorView = view;
+        calculatorView.updateView(calculatorModel.getExpression(), calculatorModel.getResult());
+    }
+
+    public void detachView() {
+        calculatorView = null;
+    }
+
     public String onNumberPressed(String temp) {
         calculatorModel.appendTempOperand(temp);
         calculatorModel.appendExpression(temp);
-        Log.d(TAG, "888888onNumberPressed: expression=" + calculatorModel.getExpression());
+        Log.d(TAG, "888888888888888onNumberPressed: expression=" + calculatorModel.getExpression());
         return calculatorModel.getExpression();
     }
 
@@ -36,8 +49,16 @@ public class CalculatorPresenter {
         String result = "";
         if (!calculatorModel.getTempOperand().isEmpty()) {
             calculatorModel.pushOperand(Double.valueOf(calculatorModel.getTempOperand()));
-            result = Double.toString(calculatorModel.equals());
+            double tempResult = calculatorModel.equals();
+            result = Double.toString(tempResult);
+            //result = String.format("%.0f",tempResult).split("\\.")[0];
+
+
+            /*DecimalFormat decimalFormat = new DecimalFormat("0.#");
+            result = decimalFormat.format(tempResult).toString();
+            */
         }
+
         return result;
     }
 
@@ -53,23 +74,14 @@ public class CalculatorPresenter {
         return calculatorModel.getExpression();
     }
 
-    public String switchSign(){
+    public String switchSign() {
+        Log.d(TAG, "switchSign: expression=" + calculatorModel.getExpression());
         if (!calculatorModel.getTempOperand().isEmpty()) {
             //calculatorModel.pushOperand(Double.valueOf(tempOperand.toString()));
             calculatorModel.switchSign();
-
         }
-
-        return calculatorModel.getTempOperand();
+        Log.d(TAG, "switchSign: expression=" + calculatorModel.getExpression() + " operandList=" + calculatorModel.getOperandList().toString());
+        return calculatorModel.getExpression();
     }
 
-    /*
-    public ArrayList<String> onResume(){
-        Log.d(TAG, "***************************************************************onResume: expression=" + expression.toString() + " result=" + result );
-        ArrayList<String> outputText = new ArrayList<>();
-        outputText.add(expression.toString());
-        outputText.add(result);
-        return outputText;
-    }
-*/
 }

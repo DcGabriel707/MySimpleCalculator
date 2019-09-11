@@ -27,12 +27,14 @@ public class Calculator {
     }
 
     public String getExpression() {
+/*
         for (int i = 0; i < operandList.size(); i++) {
             if (operatorList.size() < operandList.size()) {
                 expression = operandList.get(i).toString() + operatorList.get(i);
             }
         }
-
+        Log.d(TAG, "getExpression: operandList=" + operandList.toString());
+*/
         return expression;
     }
 
@@ -40,8 +42,16 @@ public class Calculator {
         return result;
     }
 
+    public ArrayList<Double> getOperandList(){
+        return operandList;
+    }
+
     public void setTempOperand(String tempOperand) {
         this.tempOperand = tempOperand;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
     }
 
     public void setResult(String result) {
@@ -51,7 +61,7 @@ public class Calculator {
 
     public void appendTempOperand(String tempOperand) {
         this.tempOperand += tempOperand;
-        Log.d(TAG, "88888888888888888888888888888appendTempOperand: tempOperand=" + tempOperand);
+        Log.d(TAG, "appendTempOperand: tempOperand=" + tempOperand);
     }
 
     public void appendExpression(String temp) {
@@ -71,11 +81,11 @@ public class Calculator {
 
         double result = 0;
         double operand1 = operandList.get(0);
-        Log.d(TAG, "000000000000000000000000000000equals:" + operandList.toString());
+        Log.d(TAG, "equals:" + operandList.toString());
         for (int i = 0; i < operandList.size() - 1; i++) {
             String operator = operatorList.get(i);
             double operand2 = operandList.get(i + 1);
-            Log.d(TAG, "00000000000000000000000000000equals: operand1=" + operandList.get(0) + " operand2=" + operand2 + " operator" + operator);
+            Log.d(TAG, "equals: operand1=" + operandList.get(0) + " operand2=" + operand2 + " operator" + operator);
             operand1 = evaluate(operand1, operand2, operator);
         }
 
@@ -125,6 +135,12 @@ public class Calculator {
     }
 
     public void switchSign() {
-        tempOperand = "-" + tempOperand;
+        String prevOperand = tempOperand;
+        tempOperand = Double.toString(Double.valueOf(tempOperand) * -1);
+
+        //todo: fix
+        expression = expression.replace(prevOperand, tempOperand);
     }
+
+
 }
