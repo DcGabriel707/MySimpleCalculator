@@ -27,6 +27,12 @@ public class Calculator {
     }
 
     public String getExpression() {
+        for (int i = 0; i < operandList.size(); i++) {
+            if (operatorList.size() < operandList.size()) {
+                expression = operandList.get(i).toString() + operatorList.get(i);
+            }
+        }
+
         return expression;
     }
 

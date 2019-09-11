@@ -37,7 +37,6 @@ public class CalculatorPresenter {
         if (!calculatorModel.getTempOperand().isEmpty()) {
             calculatorModel.pushOperand(Double.valueOf(calculatorModel.getTempOperand()));
             result = Double.toString(calculatorModel.equals());
-
         }
         return result;
     }
